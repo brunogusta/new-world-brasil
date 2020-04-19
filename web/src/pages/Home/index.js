@@ -3,9 +3,9 @@ import React from 'react';
 import { Container } from './styles';
 
 
-const Main = () => (
+const Home = () => (
   <Container>
-    <h1>hello world</h1>
+    <button type="button">hello world</button>
   </Container>
 );
-export default Main;
+export default Home;
