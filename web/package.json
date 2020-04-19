@@ -25,7 +25,7 @@
   "scripts": {
     "start": "react-app-rewired start",
     "build": "react-app-rewired build",
-    "test": "cross-env CI=true react-app-rewired test --runInBand --passWithNoTests",
+    "test": "react-app-rewired test",
     "test-w": "yarn test -- --watch",
     "eject": "react-app-rewired eject",
     "storybook": "start-storybook -p 9009 -s public",
@@ -34,7 +34,7 @@
   "husky": {
     "hooks": {
       "pre-commit": "lint-staged",
-      "pre-push": "yarn run test && lint-staged",
+      "pre-push": "cross-env CI=true react-app-rewired test --covered",
       "commit-msg": "commitlint -E HUSKY_GIT_PARAMS"
     }
   },
@@ -62,6 +62,7 @@
     "@storybook/addons": "^5.3.18",
     "@storybook/preset-create-react-app": "^2.1.1",
     "@storybook/react": "^5.3.18",
+    "@types/jest": "^25.2.1",
     "babel-loader": "^8.1.0",
     "babel-plugin-root-import": "^6.5.0",
     "chai": "^4.2.0",
