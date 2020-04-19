@@ -4,7 +4,7 @@
     "es6": true,
     "jest": true
   },
-  "extends": ["plugin:react/recommended", "airbnb"],
+  "extends": ["plugin:react/recommended", "airbnb", "prettier"],
   "globals": {
     "Atomics": "readonly",
     "SharedArrayBuffer": "readonly"
@@ -16,8 +16,11 @@
     "ecmaVersion": 2018,
     "sourceType": "module"
   },
-  "plugins": ["react", "import", "react-hooks", "jsx-a11y", "prettier"],
+  "plugins": ["react", "import", "react-hooks", "jsx-a11y"],
   "rules": {
+    "prefer-spread": "off",
+    "implicit-arrow-linebreak": "off",
+    "max-len": ["error", { "code": 100 }],
     "import/prefer-default-export": "off",
     "semi": ["error", "always"],
     "quotes": ["error", "single"],

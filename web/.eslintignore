@@ -4,3 +4,5 @@ config-overrides.js
 stories
 .storybook
 coverage
+src/**/*.spec.js
+src/**/*.test.js
