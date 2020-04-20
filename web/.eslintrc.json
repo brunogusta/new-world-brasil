@@ -19,6 +19,7 @@
   "plugins": ["react", "import", "react-hooks", "jsx-a11y"],
   "rules": {
     "prefer-spread": "off",
+    "react/no-array-index-key": "off",
     "implicit-arrow-linebreak": "off",
     "max-len": ["error", { "code": 100 }],
     "import/prefer-default-export": "off",
