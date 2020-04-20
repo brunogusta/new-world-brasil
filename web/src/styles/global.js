@@ -12,6 +12,7 @@ export default createGlobalStyle`
 
   html, body, #root {
     height: 100%;
+    min-width: 1300px;
   }
 
   body {
@@ -23,7 +24,7 @@ export default createGlobalStyle`
   button {
     cursor: pointer;
   }
-
+/*
   ::-webkit-scrollbar  {
     width: 3px;
   }
@@ -34,5 +35,5 @@ export default createGlobalStyle`
   ::-webkit-scrollbar-thumb {
     -webkit-border-radius: 10px;
     border-radius: 10px;
-  }
+  } */
 `;

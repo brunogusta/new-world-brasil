@@ -1,11 +1,17 @@
 import React from 'react';
 
-import { Container } from './styles';
-
+import { Container, Presentation, Content } from './styles';
+import banner from '~/assets/images/banner_home.png';
 
 const Home = () => (
   <Container>
-    <button type="button">hello world</button>
+    <Presentation className="presentation">
+      <img src={banner} alt="banner" />
+    </Presentation>
+    <Content>
+      <h1>test</h1>
+    </Content>
   </Container>
 );
+
 export default Home;

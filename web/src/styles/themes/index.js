@@ -1,5 +1,5 @@
-const themes = {
-  primary: '#ff2d32',
+const main = {
+  background: '#343837',
 };
 
-export default themes;
+export default main;
