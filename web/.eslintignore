@@ -6,3 +6,4 @@ stories
 coverage
 src/**/*.spec.js
 src/**/*.test.js
+src/assets
