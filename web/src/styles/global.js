@@ -1,7 +1,43 @@
+/* eslint-disable camelcase */
 import { createGlobalStyle } from 'styled-components';
 import '@fortawesome/fontawesome-free/css/all.css';
+import 'react-toastify/dist/ReactToastify.css';
+
+import av_bold from '~/assets/fonts/AveriaSerif-Bold.ttf';
+import av_bold_i from '~/assets/fonts/AveriaSerif-BoldItalic.ttf';
+import av_italic from '~/assets/fonts/AveriaSerif-Italic.ttf';
+import av_light from '~/assets/fonts/AveriaSerif-Light.ttf';
+import av_light_i from '~/assets/fonts/AveriaSerif-LightItalic.ttf';
+import av_regular from '~/assets/fonts/AveriaSerif-Regular.ttf';
 
 export default createGlobalStyle`
+ @font-face {
+   font-family: 'av-bold';
+   src: local('av-bold'), url(${av_bold}) format('truetype');
+ }
+ @font-face {
+   font-family: 'av-bold-i';
+   src: local('av-bold-i'), url(${av_bold_i}) format('truetype');
+ }
+ @font-face {
+   font-family: 'av-italic';
+   src: local('av-italic'), url(${av_italic}) format('truetype');
+ }
+ @font-face {
+   font-family: 'av-light';
+   src: local('av-light'), url(${av_light}) format('truetype');
+ }
+ @font-face {
+   font-family: 'av-light_i';
+   src: local('av-light_i'), url(${av_light_i}) format('truetype');
+ }
+ @font-face {
+   font-family: 'av-regular';
+   src: local('av-regular'), url(${av_regular}) format('truetype');
+ }
+
+
+
   * {
     margin: 0;
     padding: 0;
@@ -12,7 +48,8 @@ export default createGlobalStyle`
 
   html, body, #root {
     height: 100%;
-    min-width: 1300px;
+    max-width: 1920px;
+    background-color: ${({ theme }) => theme.background};
   }
 
   body {
@@ -36,4 +73,21 @@ export default createGlobalStyle`
     -webkit-border-radius: 10px;
     border-radius: 10px;
   } */
+
+
+  @-webkit-keyframes autofill {
+    0%,100% {
+      color: #fff;
+      background: transparent;
+    }
+  }
+
+  input:-webkit-autofill,
+  input:-webkit-autofill:hover,
+  input:-webkit-autofill:focus,
+  input:-webkit-autofill:active {
+    -webkit-animation-delay: 1s;
+    -webkit-animation-name: autofill;
+    -webkit-animation-fill-mode: both;
+  }
 `;
