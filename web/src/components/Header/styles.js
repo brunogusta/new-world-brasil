@@ -1,4 +1,5 @@
 import styled from 'styled-components';
+import { Link } from 'react-router-dom';
 import logo from '~/assets/images/logo.png';
 
 export const Container = styled.div`
@@ -7,7 +8,6 @@ export const Container = styled.div`
   right: 0;
   left: 0;
   min-height: 5rem;
-  min-width: 1300px;
   max-width: 1920px;
   background: rgb(0, 0, 0);
   background: linear-gradient(
@@ -20,6 +20,7 @@ export const Container = styled.div`
   display: flex;
   justify-content: center;
   align-items: center;
+  font-family: 'av-bold';
 `;
 
 export const Logo = styled.img.attrs({
@@ -34,4 +35,36 @@ export const LogoWrapper = styled.div`
 
 export const CentralizerContainer = styled.div`
   width: 80%;
+  display: flex;
+  flex-direction: row;
+
+  justify-content: space-between;
+`;
+
+export const NavLink = styled(Link)`
+  text-decoration: none;
+  color: #fff;
+  margin: 0 0.3rem;
+  transition: all 0.3s ease-in-out;
+`;
+
+export const NavLinkRegister = styled(Link)`
+  text-decoration: none;
+  color: #000;
+  background-color: #fff;
+  padding: 0.2rem;
+  margin-left: 1rem;
+
+  border: 2px solid white;
+  border-radius: 1rem;
+`;
+
+export const NavLinksWrapper = styled.div``;
+
+export const LogOutBtn = styled.button`
+  color: #fff;
+  background-color: transparent;
+  border: none;
+  margin-left: 1rem;
+  font-size: 1rem;
 `;
