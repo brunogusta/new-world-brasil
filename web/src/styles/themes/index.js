@@ -1,5 +1,5 @@
 const main = {
-  background: '#343837',
+  background: '#43494C',
 };
 
 export default main;
