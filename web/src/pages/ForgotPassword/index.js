@@ -9,6 +9,8 @@ import {
   FormWrapper,
   SubmitButton,
   TextError,
+  InputWrapper,
+  FormHeaderText,
 } from './styles';
 
 import api from '~/services/api';
@@ -27,8 +29,8 @@ const ForgotPassword = () => {
         }
       })
       .catch((err) => {
-        if (err && err.response.data) {
-          toast.error(`${err.response.data}`, {
+        if (err && err.response.data.error) {
+          toast.error(`${err.response.data.error}`, {
             position: toast.POSITION.TOP_CENTER,
             draggable: false,
             autoClose: 5000,
@@ -65,17 +67,24 @@ const ForgotPassword = () => {
             dirty,
           }) => (
             <FormWrapper>
-              <input
-                type="email"
-                name="email"
-                placeholder="Email"
-                onChange={handleChange}
-                onBlur={handleBlur}
-                value={values.email}
-              />
-              {errors.email && touched.email && (
-                <TextError>{errors.email}</TextError>
-              )}
+              <FormHeaderText>
+                <h1>Insira o Email</h1>
+              </FormHeaderText>
+              <InputWrapper>
+                <input
+                  type="email"
+                  name="email"
+                  placeholder="Email"
+                  onChange={handleChange}
+                  onBlur={handleBlur}
+                  value={values.email}
+                  id="email"
+                />
+                <label htmlFor="email">Email</label>
+                {errors.email && touched.email && (
+                  <TextError>{errors.email}</TextError>
+                )}
+              </InputWrapper>
               <SubmitButton
                 type="submit"
                 disabled={!(isValid && dirty)}

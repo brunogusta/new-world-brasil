@@ -8,8 +8,8 @@ const ConfirmedEmail = () => {
   const [resp, setResp] = useState('');
 
   const handleError = (err) => {
-    if (err && err.response.data) {
-      setResp(err.response.data);
+    if (err && err.response.data.error) {
+      setResp(err.response.data.error);
     }
   };
 

@@ -13,31 +13,31 @@ import {
   NavLinkRegister,
 } from './styles';
 
-import { Types as SignInReducer } from '~/store/ducks/signInReducer';
+import { Types as UserData } from '~/store/ducks/userData';
 
 const Header = () => {
   const dispath = useDispatch();
-  const { signInReducer } = useSelector((state) => state);
+  const { userData } = useSelector((state) => state);
 
   const name = localStorage.getItem('USER_NAME');
-  const email = localStorage.getItem('USER_EMAIL');
   const token = localStorage.getItem('TOKEN_KEY');
 
   useEffect(() => {
-    if (name && email && token) {
+    if (name && token) {
       dispath({
-        type: SignInReducer.LOGIN_USER_DATA,
-        payload: { name, email, token },
+        type: UserData.INSERT_DATA,
+        payload: { name, token },
       });
     }
   }, []);
 
   const logout = () => {
     dispath({
-      type: SignInReducer.LOGIN_CLEAR_USER_DATA,
+      type: UserData.CLEAR_DATA,
     });
 
-    localStorage.clear();
+    localStorage.removeItem('TOKEN_KEY');
+    localStorage.removeItem('USER_NAME');
     history.push('/');
   };
 
@@ -51,7 +51,7 @@ const Header = () => {
         </LogoWrapper>
         {token ? (
           <NavLinksWrapper>
-            <NavLink to="/user_page">{signInReducer.username}</NavLink>
+            <NavLink to="/user_page">{userData.name}</NavLink>
             <LogOutBtn type="button" onClick={() => logout()}>
               Sair
             </LogOutBtn>

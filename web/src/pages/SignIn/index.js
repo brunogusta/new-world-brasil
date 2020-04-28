@@ -1,10 +1,11 @@
 /* eslint-disable jsx-a11y/label-has-associated-control */
-import React, { useEffect } from 'react';
+import React from 'react';
 import { ToastContainer, toast } from 'react-toastify';
-import { useDispatch, useSelector } from 'react-redux';
 import { Formik } from 'formik';
 import { Link } from 'react-router-dom';
 import * as Yup from 'yup';
+import { useDispatch } from 'react-redux';
+import history from '~/routes/history';
 
 import {
   Container,
@@ -17,34 +18,44 @@ import {
   FormHeaderText,
 } from './styles';
 
-import { Types as SignInReducer } from '~/store/ducks/signInReducer';
+import api from '~/services/api';
+
+import { Types as UserData } from '~/store/ducks/userData';
 
 const SignIn = () => {
-  const dispatch = useDispatch();
-
+  const dispath = useDispatch();
   const handleSubmitValues = ({ email, password }) => {
     const data = {
       email,
       password,
     };
 
-    dispatch({
-      type: SignInReducer.LOGIN_REQUEST,
-      payload: data,
-    });
-  };
+    api
+      .post('auth/signin', { ...data })
+      .then(({ resp }) => {
+        if (resp) {
+          window.localStorage.setItem('TOKEN_KEY', resp.token);
+          window.localStorage.setItem('USER_NAME', resp.user.name);
 
-  const { signInReducer } = useSelector((state) => state);
+          dispath({
+            type: UserData.INSERT_DATA,
+            payload: { name: resp.user.name, token: resp.token },
+          });
 
-  useEffect(() => {
-    if (signInReducer && signInReducer.error) {
-      toast.error(`${signInReducer.errorMessage}`, {
-        position: toast.POSITION.TOP_CENTER,
-        draggable: false,
-        autoClose: 5000,
+          history.push('/');
+        }
+      })
+      .catch((err) => {
+        console.log(err);
+        if (err && err.response.data.error) {
+          toast.error(`${err.response.data.error}`, {
+            position: toast.POSITION.TOP_CENTER,
+            draggable: false,
+            autoClose: 5000,
+          });
+        }
       });
-    }
-  }, [signInReducer]);
+  };
 
   return (
     <Container>

@@ -6,7 +6,10 @@ const ConfirmEmail = () => {
   return (
     <Container>
       <TextContainer>
-        <h1>Por favor, confirme seu email para concluir o cadastro.</h1>
+        <h1>Obrigado por se juntar à comunidade!</h1>
+        <h1>
+          <span> Por favor, confirme seu email para concluir o cadastro.</span>
+        </h1>
       </TextContainer>
     </Container>
   );

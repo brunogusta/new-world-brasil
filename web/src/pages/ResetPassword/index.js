@@ -9,11 +9,13 @@ import {
   FormWrapper,
   SubmitButton,
   TextError,
+  InputWrapper,
+  FormHeaderText,
 } from './styles';
 
 import api from '~/services/api';
 
-const SignUp = () => {
+const ResetPassword = () => {
   const [resp, setResp] = useState('');
 
   let token = '';
@@ -42,8 +44,8 @@ const SignUp = () => {
         }
       })
       .catch((err) => {
-        if (err && err.response.data) {
-          toast.error(`${err.response.data}`, {
+        if (err && err.response.data.error) {
+          toast.error(`${err.response.data.error}`, {
             position: toast.POSITION.TOP_CENTER,
             draggable: false,
             autoClose: 5000,
@@ -56,7 +58,9 @@ const SignUp = () => {
     <Container>
       <ToastContainer />
       {resp ? (
-        <h1>{resp}</h1>
+        <span>
+          <h1>{resp}</h1>
+        </span>
       ) : (
         <FormikWrapper>
           <Formik
@@ -90,34 +94,45 @@ const SignUp = () => {
               dirty,
             }) => (
               <FormWrapper>
-                <input
-                  type="password"
-                  name="password"
-                  placeholder="Senha"
-                  onChange={handleChange}
-                  onBlur={handleBlur}
-                  value={values.password}
-                />
-                {errors.password && touched.password && (
-                  <TextError>{errors.password}</TextError>
-                )}
-                <input
-                  type="password"
-                  name="confirmPassword"
-                  placeholder="Repita a senha"
-                  onChange={handleChange}
-                  onBlur={handleBlur}
-                  value={values.confirmPassword}
-                />
-                {errors.confirmPassword && touched.confirmPassword && (
-                  <TextError>{errors.confirmPassword}</TextError>
-                )}
+                <FormHeaderText>
+                  <h1>Informe a nova senha</h1>
+                </FormHeaderText>
+                <InputWrapper>
+                  <input
+                    type="password"
+                    name="password"
+                    placeholder="Senha"
+                    onChange={handleChange}
+                    onBlur={handleBlur}
+                    value={values.password}
+                    id="password"
+                  />
+                  <label htmlFor="password">Senha</label>
+                  {errors.password && touched.password && (
+                    <TextError>{errors.password}</TextError>
+                  )}
+                </InputWrapper>
+                <InputWrapper>
+                  <input
+                    type="password"
+                    name="confirmPassword"
+                    placeholder="Repita a senha"
+                    onChange={handleChange}
+                    onBlur={handleBlur}
+                    value={values.confirmPassword}
+                    id="confirm-password"
+                  />
+                  <label htmlFor="confirm-password">Confirmar senha</label>
+                  {errors.confirmPassword && touched.confirmPassword && (
+                    <TextError>{errors.confirmPassword}</TextError>
+                  )}
+                </InputWrapper>
                 <SubmitButton
                   type="submit"
                   disabled={!(isValid && dirty)}
                   onClick={handleSubmit}
                 >
-                  Registrar
+                  Enviar
                 </SubmitButton>
               </FormWrapper>
             )}
@@ -128,4 +143,4 @@ const SignUp = () => {
   );
 };
 
-export default SignUp;
+export default ResetPassword;

@@ -1,6 +1,5 @@
-import React, { useEffect } from 'react';
+import React from 'react';
 import { ToastContainer, toast } from 'react-toastify';
-import { useDispatch, useSelector } from 'react-redux';
 import { Formik } from 'formik';
 import * as Yup from 'yup';
 
@@ -14,11 +13,9 @@ import {
   FormHeaderText,
 } from './styles';
 
-import { Types as SignUpTypes } from '~/store/ducks/signUpReducer';
+import api from '~/services/api';
 
 const SignUp = () => {
-  const dispatch = useDispatch();
-
   const handleSubmitValues = ({ name, email, password }) => {
     const data = {
       name,
@@ -26,23 +23,27 @@ const SignUp = () => {
       password,
     };
 
-    dispatch({
-      type: SignUpTypes.REGISTER_REQUEST,
-      payload: data,
-    });
-  };
-
-  const { signUpReducer } = useSelector((state) => state);
-
-  useEffect(() => {
-    if (signUpReducer && signUpReducer.error) {
-      toast.error(`${signUpReducer.errorMessage}`, {
-        position: toast.POSITION.BOTTOM_RIGHT,
-        draggable: false,
-        autoClose: 3000,
+    api
+      .post('auth/signup', { ...data })
+      .then(({ resp }) => {
+        if (resp) {
+          toast.success(`${resp}`, {
+            position: toast.POSITION.TOP_CENTER,
+            draggable: false,
+            autoClose: 5000,
+          });
+        }
+      })
+      .catch((err) => {
+        if (err && err.response.data.error) {
+          toast.error(`${err.response.data.error}`, {
+            position: toast.POSITION.TOP_CENTER,
+            draggable: false,
+            autoClose: 5000,
+          });
+        }
       });
-    }
-  }, [signUpReducer]);
+  };
 
   return (
     <Container>

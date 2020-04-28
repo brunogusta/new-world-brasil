@@ -124,7 +124,7 @@ export const SubmitButton = styled.button`
   border-radius: 0.3rem;
   transition: all 0.5s ease;
 
-  background: ${({ disabled }) => (disabled ? '#ccc2' : 'orange')};
+  background: ${({ disabled }) => (disabled ? '#ccc2' : '#FFD700')};
   box-shadow: ${({ disabled }) =>
     disabled
       ? '#ccc2'

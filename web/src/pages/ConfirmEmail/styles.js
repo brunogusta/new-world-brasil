@@ -24,4 +24,8 @@ export const TextContainer = styled.div`
   justify-content: center;
   font-size: 1.3rem;
   color: #fff;
+
+  span {
+    color: ${({ theme }) => theme.textSecundary};
+  }
 `;
