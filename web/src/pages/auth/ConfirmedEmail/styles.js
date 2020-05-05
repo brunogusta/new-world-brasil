@@ -3,7 +3,6 @@ import background from '~/assets/images/background.jpg';
 
 export const Container = styled.div`
   height: 100%;
-  background-color: ${({ theme }) => theme.background};
   text-shadow: 4px 3px 0 rgba(0, 0, 0, 0.1);
   background-image: url(${background});
 

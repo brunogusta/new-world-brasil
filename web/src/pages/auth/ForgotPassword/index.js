@@ -25,6 +25,7 @@ const ForgotPassword = () => {
             position: toast.POSITION.TOP_CENTER,
             draggable: false,
             autoClose: 5000,
+            className: 'custom-toast',
           });
         }
       })

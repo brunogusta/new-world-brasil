@@ -1,7 +1,11 @@
+/* eslint-disable jsx-a11y/label-has-associated-control */
 import React from 'react';
 import { ToastContainer, toast } from 'react-toastify';
 import { Formik } from 'formik';
+import { Link } from 'react-router-dom';
 import * as Yup from 'yup';
+import { useDispatch } from 'react-redux';
+import history from '~/routes/history';
 
 import {
   Container,
@@ -9,46 +13,54 @@ import {
   FormWrapper,
   SubmitButton,
   TextError,
+  FormFooterWrapper,
   InputWrapper,
   FormHeaderText,
 } from './styles';
 
 import api from '~/services/api';
 
-const SignUp = () => {
-  const handleSubmitValues = ({ name, email, password }) => {
+import { Types as UserData } from '~/store/ducks/userData';
+
+const SignIn = () => {
+  const dispath = useDispatch();
+  const handleSubmitValues = async ({ email, password }) => {
     const data = {
-      name,
       email,
       password,
     };
 
-    api
-      .post('auth/signup', { ...data })
-      .then(({ resp }) => {
-        if (resp) {
-          toast.success(`${resp}`, {
-            position: toast.POSITION.TOP_CENTER,
-            draggable: false,
-            autoClose: 5000,
-          });
-        }
-      })
-      .catch((err) => {
-        if (err && err.response.data.error) {
-          toast.error(`${err.response.data.error}`, {
-            position: toast.POSITION.TOP_CENTER,
-            draggable: false,
-            autoClose: 5000,
-          });
-        }
-      });
+    try {
+      const resp = await api.post('auth/signin', { ...data });
+
+      if (resp) {
+        window.localStorage.setItem('TOKEN_KEY', resp.data.token);
+        window.localStorage.setItem('USER_NAME', resp.data.user.name);
+
+        dispath({
+          type: UserData.INSERT_DATA,
+          payload: { name: resp.data.user.name, token: resp.data.token },
+        });
+
+        history.push('/');
+      }
+    } catch (err) {
+      if (err && err.response.data.error) {
+        toast.error(`${err.response.data.error}`, {
+          position: toast.POSITION.TOP_CENTER,
+          draggable: false,
+          autoClose: 8000,
+          className: 'custom-toast',
+        });
+      }
+    }
   };
 
   return (
     <Container>
       <ToastContainer />
-      <FormikWrapper>
+      <FormikWrapper duration="1s">
+        <FormHeaderText>LOGIN</FormHeaderText>
         <Formik
           initialValues={{
             name: '',
@@ -61,19 +73,10 @@ const SignUp = () => {
             actions.resetForm();
           }}
           validationSchema={Yup.object().shape({
-            name: Yup.string().required('O nome é obrigatório'),
             email: Yup.string()
               .email('O E-mail informado não é valido')
               .required('O Email é obrigatório'),
             password: Yup.string().required('A senha é obrigatória'),
-            confirmPassword: Yup.string().test(
-              '',
-              'As senhas não são idênticas',
-              function test(values) {
-                // eslint-disable-next-line react/no-this-in-sfc
-                return this.parent.password === values;
-              }
-            ),
           })}
           render={({
             values,
@@ -86,30 +89,11 @@ const SignUp = () => {
             dirty,
           }) => (
             <FormWrapper>
-              <FormHeaderText>
-                <span>SEJA</span>
-              </FormHeaderText>
-              <FormHeaderText>BEM-VINDO</FormHeaderText>
-              <InputWrapper>
-                <input
-                  type="text"
-                  name="name"
-                  placeholder="Nome"
-                  onChange={handleChange}
-                  onBlur={handleBlur}
-                  value={values.name}
-                  id="name"
-                />
-                <label htmlFor="name">Nome</label>
-                {errors.name && touched.name && (
-                  <TextError>{errors.name}</TextError>
-                )}
-              </InputWrapper>
               <InputWrapper>
                 <input
                   type="email"
                   name="email"
-                  placeholder="Email"
+                  placeholder="email"
                   onChange={handleChange}
                   onBlur={handleBlur}
                   value={values.email}
@@ -124,7 +108,7 @@ const SignUp = () => {
                 <input
                   type="password"
                   name="password"
-                  placeholder="Senha"
+                  placeholder="email"
                   onChange={handleChange}
                   onBlur={handleBlur}
                   value={values.password}
@@ -135,34 +119,23 @@ const SignUp = () => {
                   <TextError>{errors.password}</TextError>
                 )}
               </InputWrapper>
-              <InputWrapper>
-                <input
-                  type="password"
-                  name="confirmPassword"
-                  placeholder="Repita a senha"
-                  onChange={handleChange}
-                  onBlur={handleBlur}
-                  value={values.confirmPassword}
-                  id="confirm-password"
-                />
-                <label htmlFor="confirm-password">Repita a senha</label>
-                {errors.confirmPassword && touched.confirmPassword && (
-                  <TextError>{errors.confirmPassword}</TextError>
-                )}
-              </InputWrapper>
               <SubmitButton
                 type="submit"
                 disabled={!(isValid && dirty)}
                 onClick={handleSubmit}
               >
-                Registrar
+                ENTRAR
               </SubmitButton>
             </FormWrapper>
           )}
         />
+        <FormFooterWrapper>
+          <Link to="/auth/forgot_password">Esqueci minha senha.</Link>
+          <Link to="/auth/resend_email">Reenviar email de confirmação.</Link>
+        </FormFooterWrapper>
       </FormikWrapper>
     </Container>
   );
 };
 
-export default SignUp;
+export default SignIn;

@@ -61,6 +61,21 @@ export default createGlobalStyle`
   button {
     cursor: pointer;
   }
+
+  .custom-toast {
+    width:  30vw;
+    font-family: 'av-bold';
+    font-size:1.2rem;
+    text-align: center;
+  }
+
+  .Toastify__toast-container--top-center {
+    margin-left: calc(-30vw/2)
+  }
+
+
+
+
 /*
   ::-webkit-scrollbar  {
     width: 3px;

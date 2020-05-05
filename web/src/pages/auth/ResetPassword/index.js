@@ -40,6 +40,7 @@ const ResetPassword = () => {
             position: toast.POSITION.TOP_CENTER,
             draggable: false,
             autoClose: 5000,
+            className: 'custom-toast',
           });
         }
       })
@@ -49,6 +50,7 @@ const ResetPassword = () => {
             position: toast.POSITION.TOP_CENTER,
             draggable: false,
             autoClose: 5000,
+            className: 'custom-toast',
           });
         }
       });

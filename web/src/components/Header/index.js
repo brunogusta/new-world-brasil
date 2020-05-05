@@ -29,7 +29,7 @@ const Header = () => {
         payload: { name, token },
       });
     }
-  }, []);
+  }, [name, token, dispath]);
 
   const logout = () => {
     dispath({
