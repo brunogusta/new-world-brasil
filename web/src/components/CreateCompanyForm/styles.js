@@ -1,31 +1,26 @@
-import styled, { keyframes } from 'styled-components';
-import baseAnimation from '~/utils/animation/base-animation';
+import styled from 'styled-components';
 
-const FadeInAnimation = keyframes`
-from {
-    top: 60%;
-    opacity: 0;
-  }
+export const Container = styled.div`
+  width: 100%;
+  height: 100%;
+  margin-top: 30vh;
 
-  to {
-    top: 50%;
-    opacity: 1;
+  .error-message {
+    vertical-align: center;
+    color: #fff;
+    font-size: 2rem;
+    font-family: 'av-bold';
+    text-align: center;
   }
 `;
 
-export const Container = styled(baseAnimation)`
+export const FormWrapper = styled.div`
+  margin: auto auto;
   width: 60%;
 
   max-width: 824px;
   background-color: rgba(0, 0, 0, 0.4);
   border-radius: 1rem;
-
-  margin-bottom: 1rem;
-
-  position: absolute;
-  top: 50%;
-  left: 50%;
-  transform: translate(-50%, -20%);
 
   display: flex;
   flex-direction: column;
@@ -33,7 +28,6 @@ export const Container = styled(baseAnimation)`
   padding: 1rem;
 
   font-family: 'av-bold';
-  animation-name: ${FadeInAnimation};
 
   .RichTextEditor__root___2QXK- {
     min-height: 600px;
@@ -69,20 +63,13 @@ export const Container = styled(baseAnimation)`
   .image-section {
     width: 20%;
   }
-
-  .consuls-section {
-    width: 26%;
-  }
-
-  .descrition-section {
-    width: 27%;
-  }
 `;
 
 export const FormHeader = styled.div`
-  font-size: 1.5rem;
+  font-size: 2rem;
   color: #fff;
   text-align: center;
+  font-family: 'av-light';
 `;
 
 export const InputWrapper = styled.div`
@@ -161,6 +148,8 @@ export const SubmitButton = styled.button`
   border-radius: 0.3rem;
   transition: all 0.5s ease;
 
+  color: ${({ disabled }) => (disabled ? '#ccc2' : '#000')};
+
   background: ${({ disabled }) => (disabled ? '#ccc2' : '#FFD700')};
   box-shadow: ${({ disabled }) =>
     disabled
@@ -173,17 +162,28 @@ export const SubmitButton = styled.button`
 `;
 
 export const SectionTitle = styled.div`
-  position: relative;
+  flex-direction: column;
   color: #fff;
-  margin-top: 1rem;
+  margin: 1rem 0rem;
 
   h1 {
-    font-size: 1.4rem;
+    font-family: 'av-bold';
+    font-size: 2rem;
   }
 
-  img {
-    height: 5%;
-    max-width: 100%;
+  .img-consuls {
+    height: 10px;
+    width: 290px;
+  }
+
+  .img-logo {
+    height: 10px;
+    width: 290px;
+  }
+
+  .img-description {
+    height: 10px;
+    width: 365px;
   }
 `;
 
@@ -204,6 +204,7 @@ export const SelectInputsWrapper = styled.div`
     font-weight: bold;
     border-radius: 2px;
     font-size: 1.1rem;
+    color: #000;
 
     background-color: #fff;
     font-family: 'av-light';
