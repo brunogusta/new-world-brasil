@@ -18,7 +18,7 @@ import api from '~/services/api';
 const ResendEmail = () => {
   const handleSubmitValues = ({ email }) => {
     api
-      .post('auth/resend_email', { email })
+      .post('auth/resend-email', { email })
       .then(({ data }) => {
         if (data) {
           toast.success(`${data}`, {

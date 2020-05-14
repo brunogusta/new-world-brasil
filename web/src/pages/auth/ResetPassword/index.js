@@ -33,7 +33,7 @@ const ResetPassword = () => {
 
   const handleSubmitValues = ({ password }) => {
     api
-      .post(`auth/reset_password/?token=${token}`, { password })
+      .put(`auth/reset-password/?token=${token}`, { password })
       .then(({ data }) => {
         if (data) {
           toast.success(`${data}`, {

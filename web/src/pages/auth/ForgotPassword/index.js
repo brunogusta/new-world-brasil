@@ -18,7 +18,7 @@ import api from '~/services/api';
 const ForgotPassword = () => {
   const handleSubmitValues = ({ email }) => {
     api
-      .post('auth/forgot_password', { email })
+      .post('auth/forgot-password', { email })
       .then(({ data }) => {
         if (data) {
           toast.success(`${data}`, {

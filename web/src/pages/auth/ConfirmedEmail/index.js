@@ -27,7 +27,7 @@ const ConfirmedEmail = () => {
     }
 
     api
-      .get(`auth/confirmed_email/?token=${token}`)
+      .get(`auth/confirmed-email/?token=${token}`)
       .then((res) => handleSuccess(res.data))
       .catch((err) => handleError(err));
   }, []);
