@@ -57,7 +57,7 @@ export const FormHeaderText = styled.h1`
   width: 100%;
 `;
 
-export const FormWrapper = styled.div`
+export const FormWrapper = styled.form`
   display: flex;
   flex-direction: column;
 `;
@@ -110,7 +110,7 @@ export const InputWrapper = styled.div`
 
 export const SubmitButton = styled.button`
   width: 100%;
-  padding: 1rem;
+  padding: 13px 0px 10px 0px;
   border: none;
 
   margin-top: 3rem;
@@ -119,6 +119,7 @@ export const SubmitButton = styled.button`
   font-size: 1.2rem;
   border-radius: 0.3rem;
   transition: all 0.5s ease;
+  color: ${({ disabled }) => (disabled ? '#ccc2' : '#000')};
 
   background: ${({ disabled }) => (disabled ? '#ccc2' : 'orange')};
   box-shadow: ${({ disabled }) =>

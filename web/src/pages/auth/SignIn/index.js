@@ -1,5 +1,5 @@
 /* eslint-disable jsx-a11y/label-has-associated-control */
-import React from 'react';
+import React, { useState } from 'react';
 import { ToastContainer, toast } from 'react-toastify';
 import { Formik } from 'formik';
 import { Link } from 'react-router-dom';
@@ -21,10 +21,14 @@ import {
 import api from '~/services/api';
 
 import { Types as UserData } from '~/store/ducks/userData';
+import LoadingAnimation from '~/utils/animation/LoadingAnimation/';
 
 const SignIn = () => {
+  const [loading, setLoading] = useState(false);
+
   const dispath = useDispatch();
   const handleSubmitValues = async ({ email, password }) => {
+    setLoading(true);
     const data = {
       email,
       password,
@@ -43,8 +47,11 @@ const SignIn = () => {
         });
 
         history.push('/');
+        setLoading(false);
       }
     } catch (err) {
+      setLoading(false);
+
       if (err && err.response.data.error) {
         toast.error(`${err.response.data.error}`, {
           position: toast.POSITION.TOP_CENTER,
@@ -86,7 +93,6 @@ const SignIn = () => {
             handleChange,
             handleSubmit,
             isValid,
-            dirty,
           }) => (
             <FormWrapper>
               <InputWrapper>
@@ -121,17 +127,17 @@ const SignIn = () => {
               </InputWrapper>
               <SubmitButton
                 type="submit"
-                disabled={!(isValid && dirty)}
+                disabled={!isValid}
                 onClick={handleSubmit}
               >
-                ENTRAR
+                {loading ? <LoadingAnimation /> : 'ENTRAR'}
               </SubmitButton>
             </FormWrapper>
           )}
         />
         <FormFooterWrapper>
-          <Link to="/auth/forgot_password">Esqueci minha senha.</Link>
-          <Link to="/auth/resend_email">Reenviar email de confirmação.</Link>
+          <Link to="/auth/forgot-password">Esqueci minha senha.</Link>
+          <Link to="/auth/resend-email">Reenviar email de confirmação.</Link>
         </FormFooterWrapper>
       </FormikWrapper>
     </Container>

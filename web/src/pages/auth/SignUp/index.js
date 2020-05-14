@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useState } from 'react';
 import { ToastContainer, toast } from 'react-toastify';
 import { Formik } from 'formik';
 import * as Yup from 'yup';
@@ -14,9 +14,13 @@ import {
 } from './styles';
 
 import api from '~/services/api';
+import LoadingAnimation from '~/utils/animation/LoadingAnimation/';
 
 const SignUp = () => {
+  const [loading, setLoading] = useState(false);
+
   const handleSubmitValues = ({ name, email, password }) => {
+    setLoading(true);
     const data = {
       name,
       email,
@@ -26,7 +30,7 @@ const SignUp = () => {
     api
       .post('auth/signup', { ...data })
       .then((resp) => {
-        console.log(resp);
+        setLoading(false);
         if (resp) {
           toast.success(`${resp.data}`, {
             position: toast.POSITION.TOP_CENTER,
@@ -37,7 +41,7 @@ const SignUp = () => {
         }
       })
       .catch((err) => {
-        console.log(err.response);
+        setLoading(false);
         if (err && err.response.data.error) {
           toast.error(`${err.response.data.error}`, {
             position: toast.POSITION.TOP_CENTER,
@@ -87,7 +91,6 @@ const SignUp = () => {
             handleChange,
             handleSubmit,
             isValid,
-            dirty,
           }) => (
             <FormWrapper>
               <FormHeaderText>
@@ -156,10 +159,10 @@ const SignUp = () => {
               </InputWrapper>
               <SubmitButton
                 type="submit"
-                disabled={!(isValid && dirty)}
+                disabled={!isValid}
                 onClick={handleSubmit}
               >
-                Registrar
+                {loading ? <LoadingAnimation /> : 'REGISTRAR'}
               </SubmitButton>
             </FormWrapper>
           )}
