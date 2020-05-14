@@ -2,8 +2,8 @@ import React from 'react';
 
 import { Container } from './styles';
 
-const ListGuilds = () => {
+const ListCompanies = () => {
   return <Container />;
 };
 
-export default ListGuilds;
+export default ListCompanies;

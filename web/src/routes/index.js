@@ -10,23 +10,25 @@ import ResetPassword from '../pages/auth/ResetPassword';
 import ConfirmEmail from '../pages/auth/ConfirmEmail';
 import ConfirmedEmail from '../pages/auth/ConfirmedEmail';
 import ResendEmail from '../pages/auth/ResendEmail';
-import CreateGuild from '../pages/CreateGuild';
-import ListGuilds from '../pages/ListGuilds';
-import GuildPage from '../pages/GuildPage';
+import CreateCompany from '../pages/CreateCompany';
+import ListCompanies from '../pages/ListCompanies';
+import CompanyPage from '../pages/CompanyPage';
+import CompanyUpdate from '../pages/CompanyUpdate';
 
 const Routes = () => (
   <Switch>
     <Route exact path="/" component={Home} />
     <Route path="/auth/signin" component={Signin} />
     <Route path="/auth/signup" component={SignUp} />
-    <Route path="/auth/forgot_password" component={ForgotPassword} />
-    <Route path="/auth/reset_password" component={ResetPassword} />
-    <Route path="/auth/confirm_email" component={ConfirmEmail} />
-    <Route path="/auth/confirmed_email" component={ConfirmedEmail} />
-    <Route path="/auth/resend_email" component={ResendEmail} />
-    <Route path="/registry/create_guild" component={CreateGuild} />
-    <Route exact path="/guilds" component={ListGuilds} />
-    <Route path="/guilds/find-one" component={GuildPage} />
+    <Route path="/auth/forgot-password" component={ForgotPassword} />
+    <Route path="/auth/reset-password" component={ResetPassword} />
+    <Route path="/auth/confirm-email" component={ConfirmEmail} />
+    <Route path="/auth/confirmed-email" component={ConfirmedEmail} />
+    <Route path="/auth/resend-email" component={ResendEmail} />
+    <Route path="/registry/company/create-company" component={CreateCompany} />
+    <Route path="/registry/company/update" component={CompanyUpdate} />
+    <Route exact path="/companies" component={ListCompanies} />
+    <Route path="/companies/find-one" component={CompanyPage} />
   </Switch>
 );
 

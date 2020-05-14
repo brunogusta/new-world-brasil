@@ -1,11 +1,11 @@
 import { combineReducers } from 'redux';
 
 import userData from './userData';
-import userGuildStatus from './userGuildStatus';
+import userCompanyStatus from './userCompanyStatus';
 
 const reducers = combineReducers({
   userData,
-  userGuildStatus,
+  userCompanyStatus,
 });
 
 export default reducers;
