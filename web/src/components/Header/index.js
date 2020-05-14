@@ -8,7 +8,8 @@ import {
   LogoWrapper,
   Logo,
   NavLink,
-  NavLinksWrapper,
+  AuthNavLinksWrapper,
+  MiddleNavLinksWrapper,
   LogOutBtn,
   NavLinkRegister,
 } from './styles';
@@ -49,18 +50,21 @@ const Header = () => {
             <Logo />
           </NavLink>
         </LogoWrapper>
+        <MiddleNavLinksWrapper>
+          <NavLink to="/companies">Companhias</NavLink>
+        </MiddleNavLinksWrapper>
         {token ? (
-          <NavLinksWrapper>
-            <NavLink to="/user_page">{userData.name}</NavLink>
+          <AuthNavLinksWrapper>
+            <NavLink to="/user-page">{userData.name}</NavLink>
             <LogOutBtn type="button" onClick={() => logout()}>
               Sair
             </LogOutBtn>
-          </NavLinksWrapper>
+          </AuthNavLinksWrapper>
         ) : (
-          <NavLinksWrapper>
+          <AuthNavLinksWrapper>
             <NavLink to="/auth/signin">Login</NavLink>
             <NavLinkRegister to="/auth/signup">Registrar</NavLinkRegister>
-          </NavLinksWrapper>
+          </AuthNavLinksWrapper>
         )}
       </CentralizerContainer>
     </Container>

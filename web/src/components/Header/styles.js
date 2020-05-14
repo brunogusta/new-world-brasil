@@ -39,13 +39,25 @@ export const CentralizerContainer = styled.div`
   flex-direction: row;
 
   justify-content: space-between;
+  font-size: 1.2rem;
+`;
+
+export const AuthNavLinksWrapper = styled.div`
+  display: flex;
+  align-items: center;
+`;
+
+export const MiddleNavLinksWrapper = styled.div`
+  display: flex;
+  align-items: center;
 `;
 
 export const NavLink = styled(Link)`
   text-decoration: none;
   color: #fff;
   margin: 0 0.3rem;
-  transition: all 0.3s ease-in-out;
+
+  font-family: 'av-bold';
 `;
 
 export const NavLinkRegister = styled(Link)`
@@ -59,12 +71,15 @@ export const NavLinkRegister = styled(Link)`
   border-radius: 1rem;
 `;
 
-export const NavLinksWrapper = styled.div``;
-
 export const LogOutBtn = styled.button`
-  color: #fff;
-  background-color: transparent;
+  background-color: #fff;
+  padding: 0 0.5rem;
+  font-family: 'av-bold';
+
+  color: #000;
+
+  border-radius: 10px;
   border: none;
   margin-left: 1rem;
-  font-size: 1rem;
+  font-size: inherit;
 `;
