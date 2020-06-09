@@ -36,7 +36,6 @@ export const FormikWrapper = styled(baseAnimation)`
   left: 50%;
   transform: translate(-50%, -45%);
 
-  position: absolute;
   min-width: 350px;
   padding: 2rem 2rem;
   min-height: 300px;
@@ -109,6 +108,9 @@ export const InputWrapper = styled.div`
 `;
 
 export const SubmitButton = styled.button`
+  display: flex;
+  justify-content: center;
+
   width: 100%;
   padding: 13px 0px 10px 0px;
   border: none;

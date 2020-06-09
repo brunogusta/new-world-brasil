@@ -2,6 +2,7 @@
 import { createGlobalStyle } from 'styled-components';
 import '@fortawesome/fontawesome-free/css/all.css';
 import 'react-toastify/dist/ReactToastify.css';
+import 'react-responsive-carousel/lib/styles/carousel.min.css';
 
 import av_bold from '~/assets/fonts/AveriaSerif-Bold.ttf';
 import av_bold_i from '~/assets/fonts/AveriaSerif-BoldItalic.ttf';
@@ -74,7 +75,21 @@ export default createGlobalStyle`
   }
 
 
+  ::-webkit-scrollbar {
+      width: 10px;
+    }
 
+  ::-webkit-scrollbar-track {
+    width: 10px;
+    background-color: #243035;
+    border-radius: 10px;
+  }
+
+  ::-webkit-scrollbar-thumb {
+    background-color: #6a6e70;
+    -webkit-border-radius: 10px;
+    border-radius: 10px;
+  }
 
 /*
   ::-webkit-scrollbar  {
@@ -90,19 +105,12 @@ export default createGlobalStyle`
   } */
 
 
-  @-webkit-keyframes autofill {
-    0%,100% {
-      color: #fff;
-      background: transparent;
-    }
-  }
-
   input:-webkit-autofill,
   input:-webkit-autofill:hover,
   input:-webkit-autofill:focus,
   input:-webkit-autofill:active {
-    -webkit-animation-delay: 1s;
-    -webkit-animation-name: autofill;
-    -webkit-animation-fill-mode: both;
+      transition: background-color 5000s ease-in-out 0s;
+      background: transparent !important;
+      -webkit-text-fill-color: white !important;
   }
 `;

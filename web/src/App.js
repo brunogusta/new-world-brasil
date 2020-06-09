@@ -12,6 +12,7 @@ import GlobalStyle from './styles/global';
 
 import themes from './styles/themes';
 import Header from './components/Header';
+import Footer from './components/Footer';
 
 import store from './store';
 
@@ -23,6 +24,7 @@ function App() {
           <GlobalStyle />
           <Header />
           <Routes />
+          <Footer />
         </ThemeProvider>
       </Router>
     </Provider>
