@@ -1,4 +1,5 @@
 import React, { useEffect, useState } from 'react';
+import { useParams } from 'react-router-dom';
 
 import { Container, TextContainer } from './styles';
 
@@ -17,20 +18,18 @@ const ConfirmedEmail = () => {
     setResp(res);
   };
 
+  const { token } = useParams();
   // eslint-disable-next-line consistent-return
   useEffect(() => {
-    const params = new URL(document.location).searchParams;
-    const token = params.get('token');
-
     if (!token) {
       return setResp('Não foi possível confirmar seu email, tente novamente.');
     }
 
     api
-      .get(`auth/confirmed-email/?token=${token}`)
+      .get(`auth/confirmed-email/${token}`)
       .then((res) => handleSuccess(res.data))
       .catch((err) => handleError(err));
-  }, []);
+  }, [token]);
 
   return (
     <Container>
