@@ -51,11 +51,12 @@ const Header = () => {
           </NavLink>
         </LogoWrapper>
         <MiddleNavLinksWrapper>
-          <NavLink to="/companies">Companhias</NavLink>
+          <NavLink to="/list-guides">Guias</NavLink>
+          <NavLink to="/companies/all/1">Companhias</NavLink>
         </MiddleNavLinksWrapper>
         {token ? (
           <AuthNavLinksWrapper>
-            <NavLink to="/user-page">{userData.name}</NavLink>
+            <NavLink to="/user-profile">{userData.name}</NavLink>
             <LogOutBtn type="button" onClick={() => logout()}>
               Sair
             </LogOutBtn>
