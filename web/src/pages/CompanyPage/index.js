@@ -1,4 +1,7 @@
+/* eslint-disable consistent-return */
+/* eslint-disable no-inner-declarations */
 import React, { useEffect, useState } from 'react';
+import { useParams } from 'react-router-dom';
 
 import api from '~/services/api';
 
@@ -26,25 +29,25 @@ import consulImg from '~/assets/images/consul.png';
 import bar from '~/assets/images/bar.png';
 
 const CompanyPage = () => {
-  // const [resp, setResp] = useState('');
   const [companyInfo, setCompanyInfo] = useState('');
 
-  let id = '';
-  useEffect(async () => {
-    const params = new URL(document.location).searchParams;
-    id = params.get('id');
-
+  const { id } = useParams();
+  useEffect(() => {
     try {
-      const { data } = await api.get(`companies/find-one/?id=${id}`);
-      const consulsArray = JSON.parse(data.consuls);
+      async function fetchData() {
+        const { data } = await api.get(`companies/find-one/${id}`);
+        const consulsArray = JSON.parse(data.consuls);
+        data.consuls = consulsArray;
+        setCompanyInfo(data);
 
-      data.consuls = consulsArray;
-      setCompanyInfo(data);
-      return data;
+        return data;
+      }
+
+      fetchData();
     } catch (e) {
       return e;
     }
-  }, []);
+  }, [id]);
 
   return (
     <Container>

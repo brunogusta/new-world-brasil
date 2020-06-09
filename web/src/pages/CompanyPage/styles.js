@@ -3,7 +3,6 @@ import media from 'styled-media-query';
 import background from '~/assets/images/background.jpg';
 
 export const Container = styled.div`
-  height: 100%;
   background-image: url(${background});
   background-color: ${({ theme }) => theme.background};
 
