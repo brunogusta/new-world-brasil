@@ -1,4 +1,5 @@
 import React, { useEffect, useState } from 'react';
+import { useParams } from 'react-router-dom';
 import { ToastContainer, toast } from 'react-toastify';
 import { Formik } from 'formik';
 import * as Yup from 'yup';
@@ -18,22 +19,19 @@ import api from '~/services/api';
 const ResetPassword = () => {
   const [resp, setResp] = useState('');
 
-  let token = '';
+  const { token } = useParams();
   // eslint-disable-next-line consistent-return
   useEffect(() => {
-    const params = new URL(document.location).searchParams;
-    token = params.get('token');
-
     if (!token) {
       return setResp(
         'Houve um erro na recuperação de sua senha, tente novamente.'
       );
     }
-  }, []);
+  }, [token]);
 
   const handleSubmitValues = ({ password }) => {
     api
-      .put(`auth/reset-password/?token=${token}`, { password })
+      .put(`auth/reset-password/${token}`, { password })
       .then(({ data }) => {
         if (data) {
           toast.success(`${data}`, {
