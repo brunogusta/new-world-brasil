@@ -1,4 +1,5 @@
 import styled from 'styled-components';
+import media from 'styled-media-query';
 
 export const Container = styled.div`
   width: 100%;
@@ -12,6 +13,10 @@ export const Container = styled.div`
     font-family: 'av-bold';
     text-align: center;
   }
+
+  ${media.lessThan('1024px')`
+   margin-top: 15vh;
+  `}
 `;
 
 export const FormWrapper = styled.div`
@@ -63,6 +68,10 @@ export const FormWrapper = styled.div`
   .image-section {
     width: 20%;
   }
+
+  ${media.lessThan('1024px')`
+    width: 100%;
+  `};
 `;
 
 export const FormHeader = styled.div`
@@ -70,6 +79,10 @@ export const FormHeader = styled.div`
   color: #fff;
   text-align: center;
   font-family: 'av-light';
+
+  ${media.lessThan('1024px')`
+    font-size: 0.8rem;
+  `};
 `;
 
 export const InputWrapper = styled.div`
@@ -95,6 +108,11 @@ export const InputWrapper = styled.div`
       font-size: 1.3rem;
       cursor: text;
       top: 20px;
+
+      ${media.lessThan('1024px')`
+        font-size: 1rem;
+        top: 30px;
+      `}
     }
   }
 
@@ -121,6 +139,10 @@ export const InputWrapper = styled.div`
     margin-top: 0.2rem;
     color: ${({ theme }) => theme.textSecundary};
   }
+
+  ${media.lessThan('1024px')`
+    width: 60%;
+  `}
 `;
 
 export const TextError = styled.p`
@@ -166,6 +188,10 @@ export const SectionTitle = styled.div`
   color: #fff;
   margin: 1rem 0rem;
 
+  ${media.lessThan('1024px')`
+    margin: 0.5rem 0rem;
+  `}
+
   h1 {
     font-family: 'av-bold';
     font-size: 2rem;
@@ -178,13 +204,34 @@ export const SectionTitle = styled.div`
 
   .img-logo {
     height: 10px;
-    width: 290px;
+    width: 295px;
   }
 
   .img-description {
     height: 10px;
     width: 365px;
   }
+
+  ${media.lessThan('1024px')`
+    h1 {
+      font-size: 1.5rem;
+    }
+
+    .img-consuls {
+    height: 10px;
+    width: 220px;
+  }
+
+  .img-logo {
+    height: 10px;
+    width: 220px;
+  }
+
+  .img-description {
+    height: 10px;
+    width: 275px;
+  }
+  `}
 `;
 
 export const SelectInputsWrapper = styled.div`
@@ -219,6 +266,10 @@ export const SelectInputsWrapper = styled.div`
     font-size: 1.3rem;
     color: #fff;
   }
+
+  ${media.lessThan('1024px')`
+    flex-direction: column;
+  `}
 `;
 
 export const SelectInputBox = styled.div`
@@ -230,6 +281,10 @@ export const ConsulsWrapper = styled.div`
   display: flex;
   flex-direction: row;
   justify-content: space-between;
+
+  ${media.lessThan('1024px')`
+    flex-direction: column;
+  `}
 `;
 
 export const ImageUploadWrapper = styled.div`
