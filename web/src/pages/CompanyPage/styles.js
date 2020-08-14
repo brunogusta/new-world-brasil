@@ -399,3 +399,8 @@ export const ErrorContainer = styled.div`
     font-size: 3rem;
   }
 `;
+
+export const LoadingWrapper = styled.div`
+  display: flex;
+  justify-content: center;
+`;

@@ -1,4 +1,5 @@
 import React from 'react';
+import { Link } from 'react-router-dom';
 import { useSelector } from 'react-redux';
 import CreateCompanyForm from '~/components/CreateCompanyForm';
 
@@ -12,11 +13,9 @@ const CreateCompany = () => {
       {userCompanyStatus.success ? (
         <SuccessContainer>
           <h1>companhia criada com sucesso!</h1>
-          <a
-            href={`http://localhost:3000/companies/find-one/${userCompanyStatus._id}`}
-          >
+          <Link to={`/companies/find-one/${userCompanyStatus._id}`}>
             Ir para a página
-          </a>
+          </Link>
         </SuccessContainer>
       ) : (
         <Container>

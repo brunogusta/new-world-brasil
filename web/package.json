@@ -46,7 +46,6 @@
   },
   "husky": {
     "hooks": {
-      "pre-commit": "lint-staged",
       "pre-push": "cross-env CI=true react-app-rewired test --coverage",
       "commit-msg": "commitlint -E HUSKY_GIT_PARAMS"
     }

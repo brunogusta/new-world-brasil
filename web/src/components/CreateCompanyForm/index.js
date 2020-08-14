@@ -188,7 +188,6 @@ const CreateCompanyForm = ({ header }) => {
         setLoading(false);
       } catch (err) {
         setLoading(false);
-        console.log(err);
         window.scrollTo(0, 0);
 
         toast.error(`${err.response.data.error}`, {

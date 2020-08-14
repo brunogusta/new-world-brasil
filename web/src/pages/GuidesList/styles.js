@@ -1,5 +1,6 @@
 import styled from 'styled-components';
 import { Link } from 'react-router-dom';
+import media from 'styled-media-query';
 import background from '~/assets/images/background.jpg';
 
 export const Container = styled.div`
@@ -14,7 +15,7 @@ export const Container = styled.div`
   background-image: url(${background});
 `;
 export const PresentationText = styled.div`
-  margin-top: 5vh;
+  margin-top: 10vh;
 
   h1 {
     color: #fff;
@@ -32,7 +33,7 @@ export const StyledLink = styled(Link)`
 `;
 
 export const ListWrapper = styled.div`
-  max-height: 73vh;
+  max-height: 74vh;
   overflow-y: auto;
   overflow-x: hidden;
   padding: 10px 10px;
@@ -42,6 +43,7 @@ export const ListWrapper = styled.div`
     list-style-type: none;
 
     li {
+      position: relative;
       transition: all 0.2s ease-in;
       background-color: #43494c;
       border-radius: 10px;
@@ -62,14 +64,13 @@ export const ListWrapper = styled.div`
       }
 
       .header {
-        position: relative;
         color: #fff;
         font-family: 'av-bold';
         font-size: 1rem;
 
         p {
           position: absolute;
-          right: 0;
+          right: 10px;
 
           span {
             color: ${({ theme }) => theme.textTertiary};
@@ -82,6 +83,31 @@ export const ListWrapper = styled.div`
         font-family: 'av-bold';
         font-size: 1rem;
       }
+
+      ${media.lessThan('850px')`
+        padding: 10px;
+
+        .header {
+          font-size: 0.8rem;
+        }
+      `};
+
+      ${media.lessThan('600px')`
+        .header {
+          font-size: 0.6rem;
+
+
+          p {
+            bottom: 10px;
+            left:10px;
+          }
+        }
+      `};
     }
   }
+
+  ${media.lessThan('850px')`
+      width: 100%;
+      padding: 0px;
+  `};
 `;

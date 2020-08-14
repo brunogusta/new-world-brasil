@@ -1,3 +1,4 @@
+/* eslint-disable no-nested-ternary */
 /* eslint-disable consistent-return */
 /* eslint-disable no-inner-declarations */
 import React, { useEffect, useState } from 'react';
@@ -22,14 +23,17 @@ import {
   NoDiscordBtn,
   StyledButton,
   ErrorContainer,
+  LoadingWrapper,
 } from './styles';
 
 import governorImg from '~/assets/images/governor.png';
 import consulImg from '~/assets/images/consul.png';
 import bar from '~/assets/images/bar.png';
+import LoadingAnimation from '~/utils/animation/LoadingAnimation';
 
 const CompanyPage = () => {
-  const [companyInfo, setCompanyInfo] = useState('');
+  const [companyInfo, setCompanyInfo] = useState(null);
+  const [loading, setLoading] = useState(true);
 
   const { id } = useParams();
   useEffect(() => {
@@ -39,12 +43,13 @@ const CompanyPage = () => {
         const consulsArray = JSON.parse(data.consuls);
         data.consuls = consulsArray;
         setCompanyInfo(data);
-
+        setLoading(false);
         return data;
       }
 
       fetchData();
     } catch (e) {
+      setLoading(false);
       return e;
     }
   }, [id]);
@@ -54,7 +59,11 @@ const CompanyPage = () => {
       <Header>
         <h1>COMPANHIA</h1>
       </Header>
-      {companyInfo ? (
+      {loading ? (
+        <LoadingWrapper>
+          <LoadingAnimation />
+        </LoadingWrapper>
+      ) : companyInfo ? (
         <ContentGridWrapper>
           <SideBar>
             <div>

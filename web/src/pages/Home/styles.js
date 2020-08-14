@@ -1,6 +1,7 @@
 import styled from 'styled-components';
 import media from 'styled-media-query';
 
+import { Link } from 'react-router-dom';
 import banner from '~/assets/images/banner_home.jpg';
 import background from '~/assets/images/background.jpg';
 import baseAnimation from '~/utils/animation/base-animation';
@@ -108,6 +109,17 @@ export const SiteInformationsWrapper = styled.div`
   align-items: center;
 
 
+  .logo {
+    display:flex;
+    align-items: center;
+
+    img {
+      margin-right: 10px;
+      height: auto;
+      max-width: 20px;
+    }
+  }
+
   ${media.lessThan('750px')`
     .logo {
       display: none;
@@ -166,7 +178,7 @@ export const LivesContentWrapper = styled.div`
     min-width: 750px;
   `}
 
-  ${media.lessThan('750px')`
+  ${media.lessThan('1024px')`
     h1 {
      font-size: 1.6rem;
     }
@@ -214,6 +226,7 @@ export const FeedBar = styled.div`
 export const PostWrapper = styled.div`
   position: relative;
   min-height: 500px;
+  max-width: 100%;
   border-radius: 30px;
   overflow: hidden;
   background-color: #6a6e70;
@@ -223,8 +236,8 @@ export const PostWrapper = styled.div`
 
 export const PostHeader = styled.div`
   img {
-    height: auto;
-    max-width: 100%;
+    width: 100%;
+    object-fit: cover;
   }
 `;
 
@@ -444,7 +457,7 @@ export const DiscordButton = styled.div`
   }
 `;
 
-export const CardWrapper = styled.a`
+export const CardWrapper = styled(Link)`
   position: relative;
   display: flex;
   text-decoration: none;

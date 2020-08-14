@@ -1,17 +1,14 @@
 import styled from 'styled-components';
 import media from 'styled-media-query';
+import { Link } from 'react-router-dom';
 import background from '~/assets/images/background.jpg';
 
 export const Container = styled.div`
-  height: 100%;
-
   display: flex;
   flex-direction: column;
 
-  background-position: center center;
-  background-repeat: no-repeat;
+  background: url(${background}) no-repeat center center;
   background-size: cover;
-  background-image: url(${background});
 `;
 
 export const SloganWrapper = styled.div`
@@ -92,7 +89,7 @@ export const CompaniesGrid = styled.div`
   grid-row-gap: 20px;
 `;
 
-export const CardWrapper = styled.a`
+export const CardWrapper = styled(Link)`
   position: relative;
   display: flex;
   text-decoration: none;
@@ -203,4 +200,12 @@ export const LoadingWrapper = styled.div`
   display: flex;
   justify-content: center;
   margin-top: 100px;
+  min-height: 130px;
+`;
+
+export const NoCompanyWrapper = styled.div`
+  text-align: center;
+  font-family: 'av-bold';
+  text-transform: uppercase;
+  color: #ffc700;
 `;

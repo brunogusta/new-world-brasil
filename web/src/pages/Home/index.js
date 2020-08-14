@@ -48,6 +48,7 @@ import facebook from '~/assets/images/facebook.png';
 import api from '~/services/api';
 import Pagination from '~/components/Pagination';
 import LoadingAnimation from '~/utils/animation/LoadingAnimation';
+import logoMin from '~/assets/images/logo-min.png';
 
 const Home = () => {
   const [totalMembers, setTotalMembers] = useState(null);
@@ -77,14 +78,13 @@ const Home = () => {
       await api
         .get('/companies/supporters')
         .then(({ data }) => {
-          console.log(data);
           if (data) {
+            console.log(data);
             setCompanies(data);
           }
           setLoading(false);
         })
         .catch((e) => {
-          console.log(e);
           setLoading(false);
           if (e.response && e.response.data.error) {
             toast.error(`${e.response.data.error}`, {
@@ -132,7 +132,7 @@ const Home = () => {
     }
 
     fetchData();
-  }, []);
+  }, [page]);
 
   const createCarouselItemCard = (index) => {
     return (
@@ -173,7 +173,7 @@ const Home = () => {
         <SiteInformationsWrapper>
           <div className="wrapper">
             <span className="logo">
-              <i className="fab fa-acquisitions-incorporated" />
+              <img src={logoMin} alt="logo-min" />
               CENTRAL NWBR
             </span>
             <div>
@@ -266,7 +266,7 @@ const Home = () => {
                 companies.map(({ _companyId }) => {
                   return (
                     <CardWrapper
-                      href={`http://localhost:3000/companies/find-one/${_companyId._id}`}
+                      to={`/companies/find-one/${_companyId._id}`}
                       target="_blank"
                     >
                       <img
@@ -329,16 +329,37 @@ const Home = () => {
               </a>
             </DiscordButton>
             <SocialButtonsWrapper>
-              <a href="#">
-                <img src={facebook} alt="facebook-icon" />
+              <a
+                href="https://www.facebook.com/nwbr.mmo"
+                rel="noopener noreferrer"
+                target="_blank"
+              >
+                <img
+                  src={facebook}
+                  alt="facebook-icon"
+                  rel="noopener noreferrer"
+                  target="_blank"
+                />
               </a>
-              <a href="#">
+              <a
+                href="https://www.instagram.com/nwbr.mmo/"
+                rel="noopener noreferrer"
+                target="_blank"
+              >
                 <img src={instagram} alt="instagram-icon" />
               </a>
-              <a href="#">
+              <a
+                href="https://twitter.com/NWBR_MMO"
+                rel="noopener noreferrer"
+                target="_blank"
+              >
                 <img src={twitter} alt="twitter-icon" />
               </a>
-              <a href="#">
+              <a
+                href="https://www.youtube.com/channel/UC17qKxgYBYvieDz4O_6lChg"
+                rel="noopener noreferrer"
+                target="_blank"
+              >
                 <img src={youtube} alt="youtube-icon" />
               </a>
             </SocialButtonsWrapper>

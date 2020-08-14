@@ -1,3 +1,4 @@
+/* eslint-disable no-nested-ternary */
 /* eslint-disable no-underscore-dangle */
 import React, { useEffect, useState } from 'react';
 import { useParams } from 'react-router-dom';
@@ -16,6 +17,7 @@ import {
   InfoWrapper,
   Footer,
   LoadingWrapper,
+  NoCompanyWrapper,
 } from './styles';
 
 import bar from '~/assets/images/bar.png';
@@ -24,19 +26,22 @@ import Pagination from '~/components/Pagination';
 import cardBackground from '~/assets/images/company-art.png';
 
 const ListCompanies = () => {
-  const [companies, setCompanies] = useState(false);
+  const [companies, setCompanies] = useState(null);
   const [totalPages, setTotalPages] = useState(1);
+  const [loading, setLoading] = useState(false);
 
   const { page } = useParams();
   useEffect(() => {
     async function fetchData() {
+      setLoading(true);
       try {
         const { data } = await api.get(`/companies/all/${page}`);
 
-        console.log(data);
         setCompanies(data.companies);
         setTotalPages(data.totalPages);
+        setLoading(false);
       } catch (e) {
+        setLoading(false);
         if (e.response.data && e.response.data.error) {
           toast.error(`${e.response.data.error}`, {
             position: toast.POSITION.TOP_CENTER,
@@ -58,13 +63,13 @@ const ListCompanies = () => {
         <p className="middle-text">COMPANHIAS</p>
         <p className="bottom-text">NEW WORLD BRASIL</p>
       </SloganWrapper>
-      {companies ? (
+      {companies && companies.length !== 0 ? (
         <>
           <ListCompaniesWrapper>
             <CompaniesGrid>
-              {companies.map((company) => (
+              {/* {companies.map((company) => (
                 <CardWrapper
-                  href={`http://localhost:3000/companies/find-one/${company._id}`}
+                  to={`/companies/find-one/${company._id}`}
                   target="_blank"
                 >
                   <img
@@ -97,21 +102,276 @@ const ListCompanies = () => {
                     </InfoWrapper>
                   </CardFooter>
                 </CardWrapper>
-              ))}
+              ))} */}
+
+              <CardWrapper to="/companies/find-one/" target="_blank">
+                <img
+                  className="background-image"
+                  src={cardBackground}
+                  alt="background"
+                />
+                <CardHeader>
+                  <i className="fas fa-star" />
+                </CardHeader>
+                <CompanyName>
+                  <p className="company-field">COMPANHIA</p>
+                  <img src={bar} alt="bar" />
+                </CompanyName>
+                <CardFooter>
+                  <InfoWrapper>
+                    <p className="info-name">FACÇÃO</p>
+                  </InfoWrapper>
+                  <InfoWrapper>
+                    <p className="info-name">MEMBROS</p>
+                  </InfoWrapper>
+                  <InfoWrapper>
+                    <p className="info-name">RECRUTANDO</p>
+                  </InfoWrapper>
+                </CardFooter>
+              </CardWrapper>
+              <CardWrapper to="/companies/find-one/" target="_blank">
+                <img
+                  className="background-image"
+                  src={cardBackground}
+                  alt="background"
+                />
+                <CardHeader>
+                  <i className="fas fa-star" />
+                </CardHeader>
+                <CompanyName>
+                  <p className="company-field">COMPANHIA</p>
+                  <img src={bar} alt="bar" />
+                </CompanyName>
+                <CardFooter>
+                  <InfoWrapper>
+                    <p className="info-name">FACÇÃO</p>
+                  </InfoWrapper>
+                  <InfoWrapper>
+                    <p className="info-name">MEMBROS</p>
+                  </InfoWrapper>
+                  <InfoWrapper>
+                    <p className="info-name">RECRUTANDO</p>
+                  </InfoWrapper>
+                </CardFooter>
+              </CardWrapper>
+              <CardWrapper to="/companies/find-one/" target="_blank">
+                <img
+                  className="background-image"
+                  src={cardBackground}
+                  alt="background"
+                />
+                <CardHeader>
+                  <i className="fas fa-star" />
+                </CardHeader>
+                <CompanyName>
+                  <p className="company-field">COMPANHIA</p>
+                  <img src={bar} alt="bar" />
+                </CompanyName>
+                <CardFooter>
+                  <InfoWrapper>
+                    <p className="info-name">FACÇÃO</p>
+                  </InfoWrapper>
+                  <InfoWrapper>
+                    <p className="info-name">MEMBROS</p>
+                  </InfoWrapper>
+                  <InfoWrapper>
+                    <p className="info-name">RECRUTANDO</p>
+                  </InfoWrapper>
+                </CardFooter>
+              </CardWrapper>
+              <CardWrapper to="/companies/find-one/" target="_blank">
+                <img
+                  className="background-image"
+                  src={cardBackground}
+                  alt="background"
+                />
+                <CardHeader>
+                  <i className="fas fa-star" />
+                </CardHeader>
+                <CompanyName>
+                  <p className="company-field">COMPANHIA</p>
+                  <img src={bar} alt="bar" />
+                </CompanyName>
+                <CardFooter>
+                  <InfoWrapper>
+                    <p className="info-name">FACÇÃO</p>
+                  </InfoWrapper>
+                  <InfoWrapper>
+                    <p className="info-name">MEMBROS</p>
+                  </InfoWrapper>
+                  <InfoWrapper>
+                    <p className="info-name">RECRUTANDO</p>
+                  </InfoWrapper>
+                </CardFooter>
+              </CardWrapper>
+              <CardWrapper to="/companies/find-one/" target="_blank">
+                <img
+                  className="background-image"
+                  src={cardBackground}
+                  alt="background"
+                />
+                <CardHeader>
+                  <i className="fas fa-star" />
+                </CardHeader>
+                <CompanyName>
+                  <p className="company-field">COMPANHIA</p>
+                  <img src={bar} alt="bar" />
+                </CompanyName>
+                <CardFooter>
+                  <InfoWrapper>
+                    <p className="info-name">FACÇÃO</p>
+                  </InfoWrapper>
+                  <InfoWrapper>
+                    <p className="info-name">MEMBROS</p>
+                  </InfoWrapper>
+                  <InfoWrapper>
+                    <p className="info-name">RECRUTANDO</p>
+                  </InfoWrapper>
+                </CardFooter>
+              </CardWrapper>
+              <CardWrapper to="/companies/find-one/" target="_blank">
+                <img
+                  className="background-image"
+                  src={cardBackground}
+                  alt="background"
+                />
+                <CardHeader>
+                  <i className="fas fa-star" />
+                </CardHeader>
+                <CompanyName>
+                  <p className="company-field">COMPANHIA</p>
+                  <img src={bar} alt="bar" />
+                </CompanyName>
+                <CardFooter>
+                  <InfoWrapper>
+                    <p className="info-name">FACÇÃO</p>
+                  </InfoWrapper>
+                  <InfoWrapper>
+                    <p className="info-name">MEMBROS</p>
+                  </InfoWrapper>
+                  <InfoWrapper>
+                    <p className="info-name">RECRUTANDO</p>
+                  </InfoWrapper>
+                </CardFooter>
+              </CardWrapper>
+              <CardWrapper to="/companies/find-one/" target="_blank">
+                <img
+                  className="background-image"
+                  src={cardBackground}
+                  alt="background"
+                />
+                <CardHeader>
+                  <i className="fas fa-star" />
+                </CardHeader>
+                <CompanyName>
+                  <p className="company-field">COMPANHIA</p>
+                  <img src={bar} alt="bar" />
+                </CompanyName>
+                <CardFooter>
+                  <InfoWrapper>
+                    <p className="info-name">FACÇÃO</p>
+                  </InfoWrapper>
+                  <InfoWrapper>
+                    <p className="info-name">MEMBROS</p>
+                  </InfoWrapper>
+                  <InfoWrapper>
+                    <p className="info-name">RECRUTANDO</p>
+                  </InfoWrapper>
+                </CardFooter>
+              </CardWrapper>
+              <CardWrapper to="/companies/find-one/" target="_blank">
+                <img
+                  className="background-image"
+                  src={cardBackground}
+                  alt="background"
+                />
+                <CardHeader>
+                  <i className="fas fa-star" />
+                </CardHeader>
+                <CompanyName>
+                  <p className="company-field">COMPANHIA</p>
+                  <img src={bar} alt="bar" />
+                </CompanyName>
+                <CardFooter>
+                  <InfoWrapper>
+                    <p className="info-name">FACÇÃO</p>
+                  </InfoWrapper>
+                  <InfoWrapper>
+                    <p className="info-name">MEMBROS</p>
+                  </InfoWrapper>
+                  <InfoWrapper>
+                    <p className="info-name">RECRUTANDO</p>
+                  </InfoWrapper>
+                </CardFooter>
+              </CardWrapper>
+              <CardWrapper to="/companies/find-one/" target="_blank">
+                <img
+                  className="background-image"
+                  src={cardBackground}
+                  alt="background"
+                />
+                <CardHeader>
+                  <i className="fas fa-star" />
+                </CardHeader>
+                <CompanyName>
+                  <p className="company-field">COMPANHIA</p>
+                  <img src={bar} alt="bar" />
+                </CompanyName>
+                <CardFooter>
+                  <InfoWrapper>
+                    <p className="info-name">FACÇÃO</p>
+                  </InfoWrapper>
+                  <InfoWrapper>
+                    <p className="info-name">MEMBROS</p>
+                  </InfoWrapper>
+                  <InfoWrapper>
+                    <p className="info-name">RECRUTANDO</p>
+                  </InfoWrapper>
+                </CardFooter>
+              </CardWrapper>
+              <CardWrapper to="/companies/find-one/" target="_blank">
+                <img
+                  className="background-image"
+                  src={cardBackground}
+                  alt="background"
+                />
+                <CardHeader>
+                  <i className="fas fa-star" />
+                </CardHeader>
+                <CompanyName>
+                  <p className="company-field">COMPANHIA</p>
+                  <img src={bar} alt="bar" />
+                </CompanyName>
+                <CardFooter>
+                  <InfoWrapper>
+                    <p className="info-name">FACÇÃO</p>
+                  </InfoWrapper>
+                  <InfoWrapper>
+                    <p className="info-name">MEMBROS</p>
+                  </InfoWrapper>
+                  <InfoWrapper>
+                    <p className="info-name">RECRUTANDO</p>
+                  </InfoWrapper>
+                </CardFooter>
+              </CardWrapper>
             </CompaniesGrid>
           </ListCompaniesWrapper>
           <Footer>
             <Pagination
               total={totalPages}
               activePage={Number(page)}
-              pageLink="http://localhost:3000/companies/?page=%page%"
+              pageLink="http://localhost:3000/companies/all/%page%"
             />
           </Footer>
         </>
-      ) : (
+      ) : loading ? (
         <LoadingWrapper>
           <Loading />
         </LoadingWrapper>
+      ) : (
+        <NoCompanyWrapper>
+          <h1>não há companhias</h1>
+        </NoCompanyWrapper>
       )}
     </Container>
   );

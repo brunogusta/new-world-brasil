@@ -1,8 +1,9 @@
 import styled from 'styled-components';
 import { Link } from 'react-router-dom';
+import media from 'styled-media-query';
 import logo from '~/assets/images/logo.png';
 
-export const Container = styled.div`
+export const Container = styled.nav`
   position: absolute;
   top: 0;
   right: 0;
@@ -21,11 +22,13 @@ export const Container = styled.div`
   justify-content: center;
   align-items: center;
   font-family: 'av-bold';
+  z-index: 2;
 `;
 
 export const Logo = styled.img.attrs({
   src: logo,
 })`
+  height: auto;
   max-width: 100%;
 `;
 
@@ -40,14 +43,168 @@ export const CentralizerContainer = styled.div`
 
   justify-content: space-between;
   font-size: 1.2rem;
+
+  ${media.lessThan('750px')`
+   display: none;
+  `}
 `;
 
-export const AuthNavLinksWrapper = styled.div`
+export const MobileMenuWrapper = styled.div`
+  width: 100%;
+  display: flex;
+  flex-direction: row;
+
+  height: 100%;
+
+  justify-content: flex-start;
+  align-items: center;
+
+  font-size: 1rem;
+
+  ${media.greaterThan('750px')`
+   display: none;
+  `}
+`;
+
+export const MobileNavWrapper = styled.nav`
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  align-items: center;
+
+  height: 100vh;
+  transform: ${({ open }) => (open ? 'translateX(-0%)' : 'translateX(-110%)')};
+  text-align: left;
+  padding: 1rem;
+  position: absolute;
+  top: 0;
+  left: 0;
+  transition: transform 0.3s ease-in-out;
+
+  max-width: 60%;
+
+  background-color: #43494c;
+  border-bottom-right-radius: 10px;
+  border-top-right-radius: 10px;
+
+  -webkit-box-shadow: 5px 5px 15px -1px #000000;
+  box-shadow: 5px 5px 15px -1px #000000;
+
+  ${media.greaterThan('750px')`
+   display: none;
+  `};
+
+  z-index: 15;
+`;
+
+export const MobileWrapperHeader = styled.div`
+  width: 100%;
+
+  color: #fff;
+  background-color: transparent;
+  font-size: 20px;
+
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+
+  img {
+    height: auto;
+    max-width: 75%;
+  }
+`;
+
+export const MobileWrapperFooter = styled.div`
+  width: 100%;
+
+  color: #fff;
+  background-color: transparent;
+  font-size: 20px;
+
+  display: flex;
+  flex-direction: column;
+  justify-content: space-around;
+  align-items: center;
+
+  img:nth-child(1) {
+    margin-bottom: 10px;
+    height: 10px;
+    max-width: 90%;
+  }
+
+  img:nth-child(2) {
+    height: auto;
+    max-width: 100%;
+  }
+`;
+
+export const MobileCloseBtn = styled.button`
+  color: #fff;
+  background-color: transparent;
+  border: none;
+  font-size: 1.8rem;
+`;
+
+export const MobileOpenBtn = styled.button`
+  color: #fff;
+  background-color: #43494c;
+  border: none;
+  border-radius: 2px;
+  padding: 3px 5px 3px 5px;
+  font-size: 1.8rem;
+  margin-left: 15px;
+`;
+
+export const MobileNavLink = styled(Link)`
+  font-size: 1.5rem;
+  color: #fff;
+  cursor: pointer;
+  text-align: left;
+  text-transform: uppercase;
+  margin: 0.3rem 0;
+  text-decoration: none;
+`;
+
+export const MobileAuthNavLinksWrapper = styled.div`
+  width: 100%;
+
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+`;
+
+export const MobileLogOutBtn = styled.button`
+  font-family: 'av-bold';
+
+  font-size: 1.5rem;
+  color: ${({ theme }) => theme.textTertiary};
+
+  background-color: transparent;
+  border: none;
+
+  text-transform: uppercase;
+`;
+
+export const MobileNavLinkRegister = styled(Link)`
+  text-decoration: none;
+  color: ${({ theme }) => theme.textTertiary};
+  font-size: 1.5rem;
+  text-transform: uppercase;
+`;
+
+export const MobileMiddleNavLinksWrapper = styled.div`
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+`;
+
+export const MiddleNavLinksWrapper = styled.div`
   display: flex;
   align-items: center;
 `;
 
-export const MiddleNavLinksWrapper = styled.div`
+export const AuthNavLinksWrapper = styled.div`
   display: flex;
   align-items: center;
 `;

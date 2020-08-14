@@ -74,6 +74,10 @@ export default createGlobalStyle`
     margin-left: calc(-30vw/2)
   }
 
+  .Toastify__toast--warning {
+    color: #000;
+  }
+
 
   ::-webkit-scrollbar {
       width: 10px;
